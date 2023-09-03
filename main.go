@@ -94,7 +94,6 @@ func (r *repl) parseNLex(str string, isTest bool) {
 	}
 	r.code = make([][]string, len(str1))
 	for i := range r.code {
-		r.code[i] = make([]string, len(st.Split(str1[i], " ")))
 		r.code[i] = st.Split(str1[i], " ")
 	}
 	for op, i := range r.opcodes {
@@ -106,7 +105,7 @@ func (r *repl) parseNLex(str string, isTest bool) {
 	}
 }
 
-// 把手拿回
+// "fuck you"
 // main
 func main() {
 	var input string
