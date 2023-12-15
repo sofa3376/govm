@@ -24,13 +24,13 @@ func (r *Repl) parseArgs(vm *Vm, args ...string) (reg, reg) {
 	for i, arg := range args {
 		switch arg {
 		case "a":
-			if i > 0 {
+			if i == 0 {
 				arg1 = vm.A
 			} else {
 				arg2 = vm.A
 			}
 		case "b":
-			if i > 0 {
+			if i == 0 {
 				arg1 = vm.B
 			} else {
 				arg2 = vm.B
@@ -42,7 +42,7 @@ func (r *Repl) parseArgs(vm *Vm, args ...string) (reg, reg) {
 				arg2 = vm.Res
 			}
 		default:
-			if i > 0 {
+			if i == 0 {
 				uarg1, _ := sc.ParseUint(arg, 10, 8)
 				arg1 = reg(uarg1)
 			} else {
@@ -83,7 +83,7 @@ func (r *Repl) Eval(vm *Vm, input string) {
 			vm.Cmp(arg1, arg2)
 		case "mov":
 			arg1, arg2 := r.parseArgs(vm, expr[1:]...)
-			vm.Mov(arg1, arg2)
+			vm.Mov(&arg1, &arg2)
 		case "add":
 			arg1, arg2 := r.parseArgs(vm, expr[1:]...)
 			vm.Add(arg1, arg2)
